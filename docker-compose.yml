@@ -1,0 +1,24 @@
+services:
+  agenda:
+    build: .
+    image: agenda-gs:latest
+    container_name: agenda-gs
+    ports:
+      - "8085:8000"
+    environment:
+      TZ: "America/Mexico_City"
+      APP_USER: ${APP_USER}
+      APP_PASSWORD: ${APP_PASSWORD}
+      SECRET_KEY: ${SECRET_KEY}
+      UCM_HOST: ${UCM_HOST}
+      UCM_PORT: "389"
+      UCM_BASE_DN: "dc=pbx,dc=com"
+      UCM_BIND_DN: "cn=admin,dc=pbx,dc=com"
+      UCM_BIND_PASSWORD: ${UCM_BIND_PASSWORD}
+      XML_TOKEN: ${XML_TOKEN}
+    volumes:
+      - agenda_data:/data
+    restart: unless-stopped
+
+volumes:
+  agenda_data:
