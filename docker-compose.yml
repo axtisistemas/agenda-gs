@@ -2,6 +2,7 @@ services:
   agenda:
     build: .
     image: agenda-gs:latest
+    pull_policy: build
     container_name: agenda-gs
     ports:
       - "8087:8000"
